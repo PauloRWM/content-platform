@@ -1,0 +1,19 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "paulo testes — content",
+  "home_page_url": "https://paulorwm.github.io/content-platform",
+  "feed_url": "https://paulorwm.github.io/content-platform/feed.json",
+  "description": "Published pieces from the paulo testes content platform.",
+  "items": [
+    {
+      "id": "https://paulorwm.github.io/content-platform/blog/welcome-to-the-blog/",
+      "url": "https://paulorwm.github.io/content-platform/blog/welcome-to-the-blog/",
+      "title": "Welcome to the paulo testes blog",
+      "summary": "The first post on our new publishing platform — and a quick tour of how anyone on the team can take a piece from draft to live.",
+      "date_published": "2026-08-20T00:00:00.000Z",
+      "tags": [
+        "announcement"
+      ]
+    }
+  ]
+}
