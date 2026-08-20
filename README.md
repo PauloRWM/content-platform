@@ -12,6 +12,8 @@ lives, gets published, and goes out to the world.
 - The website is **built from this repository**. Nothing is edited on a live server.
 - When a change lands on the **`main`** branch, the site **rebuilds and republishes itself
   automatically** — usually within a couple of minutes. This is called "push to publish."
+  *(Temporary: automatic deploys are paused by a GitHub billing lock — an engineer runs
+  `npm run deploy` to publish until it's cleared. See "How deploys work".)*
 - Pages are written in plain text (Markdown), so you don't need to be an engineer to add or
   edit content. (The full draft → review → publish workflow arrives in the next task, T2.)
 
@@ -72,6 +74,11 @@ astro.config.mjs             # site URL, base path, integrations (sitemap)
 
 ## How deploys work
 
+There are two publish paths. The first is the intended long-term one; the second is what
+we're using **right now** while GitHub Actions is unavailable (see the note below).
+
+### 1. Automatic (intended path) — push to `main`
+
 `.github/workflows/deploy.yml` runs on every push to `main`:
 
 1. **Build** — the official `withastro/action` installs dependencies and runs `astro build`,
@@ -80,6 +87,21 @@ astro.config.mjs             # site URL, base path, integrations (sitemap)
 
 Watch a deploy (or trigger one manually) from the repo's **Actions** tab. If a build fails,
 the site stays on the last good version — a broken change never takes the site down.
+
+### 2. Interim (one command) — `npm run deploy`
+
+> ⚠️ **Heads up:** GitHub Actions is currently **paused because the GitHub account is
+> billing-locked**, so path #1 above can't run yet. Until the account owner clears that
+> lock, publish with one command instead:
+>
+> ```bash
+> npm run deploy
+> ```
+>
+> This builds the site and pushes the output to the `gh-pages` branch, which GitHub Pages
+> serves (this managed Pages pipeline is **not** affected by the Actions lock). The change
+> is live within about a minute. The moment billing is fixed, path #1 takes over
+> automatically and this step is no longer needed.
 
 ---
 
