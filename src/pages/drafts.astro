@@ -1,0 +1,49 @@
+---
+// Draft preview index. Lists posts that are still drafts so a reviewer can read
+// them before they go live.
+//
+// SAFETY: draft content only appears here when running locally (`npm run dev`).
+// On the live production site this page renders an empty notice and is marked
+// noindex, so in-progress drafts are never exposed publicly.
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const drafts = import.meta.env.PROD
+  ? []
+  : (await getCollection('posts', ({ data }) => data.draft === true)).sort(
+      (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    );
+---
+
+<BaseLayout title="Drafts (preview) — paulo testes" noindex={true}>
+  <main class="wrap">
+    <p><a href={`${base}/blog`}>← Blog</a></p>
+    <span class="badge badge--muted">preview only</span>
+    <h1>Drafts</h1>
+
+    {import.meta.env.PROD ? (
+      <p class="lead">
+        Drafts are only visible when previewing the site locally with
+        <code>npm run dev</code>. There's nothing to show on the live site.
+      </p>
+    ) : drafts.length === 0 ? (
+      <p class="lead">No drafts right now. Start one from <code>src/content/posts/_TEMPLATE.md</code>.</p>
+    ) : (
+      <ul class="post-list">
+        {drafts.map((post) => (
+          <li>
+            <a href={`${base}/blog/${post.id}`}>{post.data.title}</a>
+            <p class="post-desc">{post.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <footer class="meta">
+      This page helps reviewers preview work in progress. It never appears on the
+      live site and search engines are told to ignore it.
+    </footer>
+  </main>
+</BaseLayout>

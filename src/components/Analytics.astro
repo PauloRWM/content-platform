@@ -1,0 +1,31 @@
+---
+// Privacy-first, cookieless analytics loader.
+//
+// Rendered once from BaseLayout, so it applies to EVERY page (current and
+// future) with no per-post tagging. Emits nothing when analytics is off, so the
+// build stays clean and no third-party request is made until you configure it.
+//
+// Both snippets below are the vendors' standard cookieless beacons: no cookies,
+// no cross-site tracking, no personal data — so no consent banner is required.
+import { analytics } from '../config/analytics';
+---
+{
+  analytics.provider === 'cloudflare' && (
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={`{"token": "${analytics.cloudflareToken}"}`}
+    />
+  )
+}
+{
+  analytics.provider === 'goatcounter' && (
+    <script
+      is:inline
+      async
+      data-goatcounter={`https://${analytics.goatCounterCode}.goatcounter.com/count`}
+      src="//gc.zgo.at/count.js"
+    />
+  )
+}

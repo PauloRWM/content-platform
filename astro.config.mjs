@@ -9,5 +9,8 @@ export default defineConfig({
   site: 'https://paulorwm.github.io',
   base: '/content-platform',
   trailingSlash: 'ignore',
-  integrations: [sitemap()],
+  integrations: [
+    // Keep the drafts-preview route out of the public sitemap.
+    sitemap({ filter: (page) => !page.includes('/drafts') }),
+  ],
 });

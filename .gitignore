@@ -2,6 +2,9 @@
 dist/
 .astro/
 
+# distribution automation: local draft queue + send-state (see docs/DISTRIBUTION.md)
+.distribution/
+
 # dependencies
 node_modules/
 

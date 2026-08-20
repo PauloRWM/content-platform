@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SubscribeForm from '../components/SubscribeForm.astro';
+---
+
+<BaseLayout
+  title="Subscribe — paulo testes"
+  description="Subscribe to the paulo testes newsletter and get new pieces in your inbox."
+>
+  <main class="wrap">
+    <h1>Subscribe</h1>
+    <p class="lead">
+      Get new pieces from paulo testes delivered by email. One click, no spam,
+      unsubscribe anytime.
+    </p>
+    <SubscribeForm />
+    <footer class="meta">
+      Prefer a feed reader? Our <a href="./feed.json">JSON feed</a> lists every published piece.
+    </footer>
+  </main>
+</BaseLayout>

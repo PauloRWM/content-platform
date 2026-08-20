@@ -17,6 +17,19 @@ const out = (cmd, cwd) => execSync(cmd, { encoding: 'utf8', cwd }).trim();
 console.log('▶ Building site...');
 sh('npm run build');
 
+// Publishing a piece triggers distribution (newsletter + social drafts).
+// Safe by default: with no provider credentials set this only writes local
+// draft files. Never let a distribution hiccup block the actual publish, and
+// allow opting out with DISTRIBUTE=0. See docs/DISTRIBUTION.md.
+if (process.env.DISTRIBUTE !== '0') {
+  console.log('▶ Distributing new pieces...');
+  try {
+    sh('node scripts/distribute.mjs --feed dist/feed.json');
+  } catch (err) {
+    console.warn('⚠ Distribution step reported an issue (publish continues):', err.message);
+  }
+}
+
 // Tell GitHub Pages not to run Jekyll over our already-built output.
 writeFileSync(`${DIST}/.nojekyll`, '');
 

@@ -10,6 +10,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "deploy": "node scripts/deploy.mjs",
+    "new:post": "node scripts/new-post.mjs",
+    "distribute": "node scripts/distribute.mjs",
+    "distribute:dry": "node scripts/distribute.mjs --dry-run",
+    "distribute:demo": "node scripts/distribute.mjs --piece-file scripts/sample-piece.json --dry-run",
     "astro": "astro"
   },
   "engines": {
