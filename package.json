@@ -1,0 +1,21 @@
+{
+  "name": "content-platform",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The content platform for paulo testes — Astro static site published to GitHub Pages.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "astro": "^5.0.0",
+    "@astrojs/sitemap": "^3.2.0"
+  }
+}

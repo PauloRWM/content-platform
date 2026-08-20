@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const buildTime = new Date().toISOString();
+---
+
+<BaseLayout title="paulo testes — content platform">
+  <main class="wrap">
+    <span class="badge">● live</span>
+    <h1>The content platform is up.</h1>
+    <p class="lead">
+      This is the foundation for producing, publishing, and distributing content at scale.
+      It's a static site built with <strong>Astro</strong> and deployed to
+      <strong>GitHub Pages</strong> automatically on every push to <code>main</code>.
+    </p>
+
+    <ul class="next">
+      <li><strong>T2</strong> — draft → review → publish workflow (Markdown in git)</li>
+      <li><strong>T3</strong> — analytics &amp; measurement</li>
+      <li><strong>T4</strong> — distribution automation (newsletter, RSS, social)</li>
+      <li><strong>T5</strong> — technical SEO &amp; performance</li>
+    </ul>
+
+    <footer class="meta">
+      Placeholder home page · built {buildTime}
+    </footer>
+  </main>
+</BaseLayout>
